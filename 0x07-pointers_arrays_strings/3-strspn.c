@@ -1,18 +1,30 @@
 #include "main.h"
 /**
- * _strchr - function to search for occurrence of a character in a string
- * @s: string pointer
- * @c: character to search for
- * Return: pointer to character if characer was found, else return null
+ * _strspn - function calculates the length (in bytes) of the is which consists
+ * entirely of bytes in accept
+ * @s: the string to check
+ * @accept: the bytes to count
+ * Return: number of bytes
  */
-char *_strchr(char *s, char c)
+unsigned int _strspn(char *s, char *accept)
 {
+	int count = 0;
+
 	int index;
 
-	for (index = 0; s[index] >= '\0'; index++)
+	while (*s)
 	{
-		if (s[index] == c)
-			return (s + index);
+		for (index = 0; accept[index]; index++)
+		{
+			if (*s == accept[index])
+			{
+				count++;
+				break;
+			}
+			else if (accept[index + 1] == '\0')
+				return (count);
+		}
+		s++;
 	}
-	return ('\0');
+	return (count);
 }

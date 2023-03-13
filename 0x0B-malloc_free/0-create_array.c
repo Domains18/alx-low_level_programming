@@ -1,4 +1,4 @@
-#include <stdilb.h>
+#include <stdlib.h>
 #include "main.h"
 /**
  * create_array - creates an array of chars and
@@ -13,13 +13,13 @@ char *create_array(unsigned int size, char c)
 
 	char *array = malloc(sizeof(char) * size);
 
-	if(size == 0)
+	if (size == 0)
 		return (NULL);
 
 	if (array == NULL)
 		return (NULL);
-	
-	for (i=0; i < size; i++)
+	/*Allocating char c to all array slots*/
+	for (i = 0; i < size; i++)
 		array[i] = c;
 
 	return (array);

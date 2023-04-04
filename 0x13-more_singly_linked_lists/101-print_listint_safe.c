@@ -1,4 +1,5 @@
 #include "lists.h"
+
 #include <stdio.h>
 
 /**
@@ -7,27 +8,23 @@
  *
  * Return: number of nodes in the list
  */
-size_t print_listint_safe(const listint_t *head)
-{
-	size_t node_count = 0;
-	long int diff;
+size_t print_listint_safe(const listint_t * head) {
+  size_t node_count = 0;
+  long int diff;
 
-	while (head)
-	{
-		diff = head - head->next;  // difference between current and next node
-		node_count++;
-		printf("[%p] %d\n", (void *)head, head->n);
-		
-		if (diff > 0)
-			head = head->next;
-		
-		else
-		{
-			printf("-> [%p] %d\n", (void *)head->next, head->next->n);
-			break;
-		}
-	}
+  while (head) {
+    diff = head - head -> next; // difference between current and next node
+    node_count++;
+    printf("[%p] %d\n", (void * ) head, head -> n);
 
-	return (node_count);
+    if (diff > 0)
+      head = head -> next;
+
+    else {
+      printf("-> [%p] %d\n", (void * ) head -> next, head -> next -> n);
+      break;
+    }
+  }
+
+  return (node_count);
 }
-

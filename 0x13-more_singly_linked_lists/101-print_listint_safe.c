@@ -1,32 +1,33 @@
 #include "lists.h"
+#include <stdio.h>
+
 /**
+ * print_listint_safe - prints a linked list safely, avoiding infinite loops
+ * @head: pointer to the head of the list
+ *
+ * Return: number of nodes in the list
+ */
+size_t print_listint_safe(const listint_t *head)
+{
+	size_t node_count = 0;
+	long int diff;
 
-safelyPrintListInt - prints a linked list, safely
+	while (head)
+	{
+		diff = head - head->next;  // difference between current and next node
+		node_count++;
+		printf("[%p] %d\n", (void *)head, head->n);
+		
+		if (diff > 0)
+			head = head->next;
+		
+		else
+		{
+			printf("-> [%p] %d\n", (void *)head->next, head->next->n);
+			break;
+		}
+	}
 
-@head: list of type listint_t to print
-
-Return: number of nodes in the list
-*/
-size_t safelyPrintListInt(const listint_t * head) {
-  size_t numNodes = 0;
-  long int diff;
-
-  while (head) {
-    // calculate the difference between the current node and the next node
-    diff = head - head -> next;
-    // increment the number of nodes and print the current node's information
-    numNodes++;
-    printf("[%p] %d\n", (void * ) head, head -> n);
-
-    // if the difference is positive, move to the next node
-    if (diff > 0)
-      head = head -> next;
-    // if the difference is negative, the next node has already been printed, so print the information and exit the loop
-    else {
-      printf("-> [%p] %d\n", (void * ) head -> next, head -> next -> n);
-      break;
-    }
-  }
-
-  return numNodes;
+	return (node_count);
 }
+
